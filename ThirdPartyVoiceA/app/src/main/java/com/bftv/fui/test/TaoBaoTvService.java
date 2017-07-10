@@ -17,7 +17,8 @@ public class TaoBaoTvService extends RomoteVoiceService {
     @Override
     public VoiceFeedback send(String s, String s1) {
         VoiceFeedback voiceFeedback = new VoiceFeedback();
-        voiceFeedback.feedback = s;
+        voiceFeedback.feedback = s+"|A";
+
         return voiceFeedback;
     }
 
