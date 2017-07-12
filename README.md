@@ -45,7 +45,12 @@ public class MainActivity extends AppCompatActivity implements IVoiceObserver {
     public VoiceFeedback update(final String s) {
     }
 ```
+step6 String s 是用户自定义的Json文件 用户在update()方法中调用 播放Button就好 <br>
 
+step7 通知update代码如下 <br>
+```java
+DataChange.getInstance().notifyDataChange(nlpJson); <br>
+```
 
 
 
