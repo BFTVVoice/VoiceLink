@@ -10,6 +10,39 @@ https://github.com/BFTVVoice/VoiceLink/blob/master/intent.md <br>
 2指令控制<br>
 语句 : 播放 (用户在影视库详情界面 喊: 播放) <br>
 
+step1 暴风大耳朵 会通过getTopActivity() 获取当前顶部的packagename <br>
+```java
+@Override
+    public void onAccessibilityEvent(AccessibilityEvent event) {
+        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            if (event.getPackageName() != null && event.getClassName() != null) {
+                ComponentName componentName = new ComponentName(
+                        event.getPackageName().toString(),
+                        event.getClassName().toString()
+                );
+
+                ActivityInfo activityInfo = tryGetActivity(componentName);
+                boolean isActivity = activityInfo != null;
+                if (isActivity){
+                    sPackageName = componentName.getPackageName();
+                }
+
+            }
+        }
+        processAccessibilityEnvent(event);
+    }
+```
+
+step2  暴风大耳朵会通过 packagename bind 第三方app的service <br>
+```java
+context.bindService(intent, mConnection, BIND_AUTO_CREATE);
+        if (mIAsynRomoteVoice == null) {
+            mQueue.add(userTxt + "|" + nlpJson);
+        } else {
+            send(userTxt, nlpJson);
+        }
+```
+
 
 
 
