@@ -34,6 +34,8 @@ private void send(String userTxt, String nlpJson) {
     }
 ```
 
+step4 用户自定义Json文件 前期可以以md的方式写在该项目中,8月中旬上线自定义Json文件平台<br>
+
 
 
 
