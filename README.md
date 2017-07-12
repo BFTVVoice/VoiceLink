@@ -52,6 +52,20 @@ step7 通知update代码如下 <br>
 DataChange.getInstance().notifyDataChange(nlpJson); 
 ```
 
+step8 播放button执行后 执行反馈给暴风大耳朵 代码如下 <br>
+```java
+private final IAsynRomoteVoice.Stub mBinder = new IAsynRomoteVoice.Stub() {
+        @Override
+        public void asynMessage(IRemoteVoice callBack, String userTxt, String nlpJson) throws RemoteException {
+            SimpleLog.l("mBinder-sendMessage-userTxt:"+userTxt+"|nlpJson:"+nlpJson);
+            send(userTxt,nlpJson,callBack);
+        }
+    };
+
+callBack.sendMessage(new VoiceFeedback());
+```
+
+
 
 
 
