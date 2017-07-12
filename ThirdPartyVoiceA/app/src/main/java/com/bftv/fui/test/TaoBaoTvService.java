@@ -1,7 +1,14 @@
 package com.bftv.fui.test;
 
+import android.os.RemoteException;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.bftv.fui.thirdparty.IRemoteVoice;
 import com.bftv.fui.thirdparty.RomoteVoiceService;
+import com.bftv.fui.thirdparty.SimpleLog;
 import com.bftv.fui.thirdparty.VoiceFeedback;
+import com.bftv.fui.thirdparty.notify.DataChange;
 
 /**
  * @author less
@@ -14,12 +21,18 @@ import com.bftv.fui.thirdparty.VoiceFeedback;
  */
 public class TaoBaoTvService extends RomoteVoiceService {
 
-    @Override
-    public VoiceFeedback send(String s, String s1) {
-        VoiceFeedback voiceFeedback = new VoiceFeedback();
-        voiceFeedback.feedback = s+"|A";
 
+    @Override
+    public VoiceFeedback send(String s, String s1, IRemoteVoice iRemoteVoice) {
+        VoiceFeedback voiceFeedback = new VoiceFeedback();
+        voiceFeedback.feedback = "ffff";
+        try {
+            iRemoteVoice.sendMessage(voiceFeedback);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        SimpleLog.l("send");
+        DataChange.getInstance().notifyDataChange("12345");
         return voiceFeedback;
     }
-
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.bftv.fui.accessibility.VoiceAccessibility;
 import com.bftv.fui.thirdparty.BindAidlManager;
 import com.bftv.fui.thirdparty.IRemoteVoice;
+import com.bftv.fui.thirdparty.SimpleLog;
 import com.bftv.fui.thirdparty.VoiceContast;
 import com.bftv.fui.thirdparty.VoiceFeedback;
 
@@ -29,19 +30,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        try{
+            VoiceAccessibility.enable(this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         VoiceAccessibility.openSystemSetting(this);
 
         findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BindAidlManager.getInstance().dealMessage(getApplicationContext(),"com.bftv.fui.test", "加载A客户端");
+                BindAidlManager.getInstance().dealMessage(getApplicationContext(), "com.bftv.fui.test", "加载A客户端", "播放", new BindAidlManager.OnBindAidlListener() {
+                    @Override
+                    public void onSuccess(VoiceFeedback voiceFeedback) {
+                        if (voiceFeedback != null) {
+                            SimpleLog.l("xxxxxx:" + voiceFeedback.feedback);
+                        }
+                    }
+                });
             }
         });
 
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BindAidlManager.getInstance().dealMessage(getApplicationContext(),"com.bftv.fui.testb", "加载B客户端");
+                //BindAidlManager.getInstance().dealMessage(getApplicationContext(),"com.bftv.fui.testb", "加载B客户端","播放");
             }
         });
 

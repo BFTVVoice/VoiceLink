@@ -1,7 +1,10 @@
 package com.bftv.fui.clienta;
 
 import android.app.Application;
+import android.app.ApplicationErrorReport;
 import android.content.Context;
+
+import com.bftv.fui.thirdparty.BindAidlManager;
 
 /**
  * @author less
@@ -20,5 +23,6 @@ public class App extends Application{
     public void onCreate() {
         super.onCreate();
         sContext = this;
+        BindAidlManager.getInstance().init(this,null,true);
     }
 }

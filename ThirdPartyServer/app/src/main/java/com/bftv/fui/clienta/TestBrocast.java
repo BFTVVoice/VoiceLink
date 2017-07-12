@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import com.bftv.fui.accessibility.VoiceAccessibility;
 import com.bftv.fui.thirdparty.BindAidlManager;
+import com.bftv.fui.thirdparty.SimpleLog;
+import com.bftv.fui.thirdparty.VoiceFeedback;
 
 /**
  * Author by Less on 17/7/10.
@@ -16,8 +18,13 @@ public class TestBrocast extends BroadcastReceiver{
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context,"我收到用户发的广播了 哈哈",Toast.LENGTH_SHORT).show();
-        BindAidlManager.getInstance().dealMessage(App.sContext, VoiceAccessibility.sPackageName,"播放");
+        SimpleLog.l("onReceive:"+VoiceAccessibility.sPackageName);
+        BindAidlManager.getInstance().dealMessage(App.sContext, "com.bftv.fui.test", "播放", "播放", new BindAidlManager.OnBindAidlListener() {
+            @Override
+            public void onSuccess(VoiceFeedback voiceFeedback) {
+                SimpleLog.l("尼玛收不到消息");
+            }
+        });
     }
 
 }

@@ -20,7 +20,7 @@
             android:name="com.bftv.fui.test.TaoBaoTvService"
             android:exported="true"
             android:enabled="true"
-            android:process=":remote">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.remotevoice" />
             </intent-filter>
