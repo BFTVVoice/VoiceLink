@@ -11,37 +11,30 @@ https://github.com/BFTVVoice/VoiceLink/blob/master/intent.md <br>
 语句 : 播放 (用户在影视库详情界面 喊: 播放) <br>
 
 step1 暴风大耳朵 会通过getTopActivity() 获取当前顶部的packagename <br>
+
+step2 暴风大耳朵会通过 packagename bind 第三方app的service <br>
+
+step3 发送用户说的话 和该用户自定义的Json文件 <br>
 ```java
-@Override
-    public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-            if (event.getPackageName() != null && event.getClassName() != null) {
-                ComponentName componentName = new ComponentName(
-                        event.getPackageName().toString(),
-                        event.getClassName().toString()
-                );
-
-                ActivityInfo activityInfo = tryGetActivity(componentName);
-                boolean isActivity = activityInfo != null;
-                if (isActivity){
-                    sPackageName = componentName.getPackageName();
+private void send(String userTxt, String nlpJson) {
+        SimpleLog.l("send-start");
+        try {
+            mIAsynRomoteVoice.asynMessage(new IRemoteVoice.Stub() {
+                @Override
+                public void sendMessage(VoiceFeedback voiceFeedback) throws RemoteException {
+                    if (mOnBindAidlListener != null) {
+                        mOnBindAidlListener.onSuccess(voiceFeedback);
+                    }
                 }
-
-            }
+            }, userTxt, nlpJson);
+        } catch (RemoteException e) {
+            SimpleLog.l("send-err:" + e.getMessage());
+            e.printStackTrace();
         }
-        processAccessibilityEnvent(event);
     }
 ```
 
-step2  暴风大耳朵会通过 packagename bind 第三方app的service <br>
-```java
-context.bindService(intent, mConnection, BIND_AUTO_CREATE);
-        if (mIAsynRomoteVoice == null) {
-            mQueue.add(userTxt + "|" + nlpJson);
-        } else {
-            send(userTxt, nlpJson);
-        }
-```
+
 
 
 
