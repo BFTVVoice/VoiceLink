@@ -36,6 +36,16 @@ private void send(String userTxt, String nlpJson) {
 
 step4 用户自定义Json文件 前期可以以md的方式写在该项目中,8月中旬上线自定义Json文件平台<br>
 
+step5 这里以 影视库的详情界面 举例子 用户在当前界面先实现 观察者模式 <br>
+```java
+public class MainActivity extends AppCompatActivity implements IVoiceObserver {
+     
+    省略部分代码
+    @Override
+    public VoiceFeedback update(final String s) {
+    }
+```
+
 
 
 
