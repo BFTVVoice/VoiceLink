@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements IVoiceObserver {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BindAidlManager.getInstance().init(this,null,true);
+        BindAidlManager.getInstance().init(this,"com.test.xxx",true);
 
         int pid = android.os.Process.myPid();
         SimpleLog.l("pid:"+pid);

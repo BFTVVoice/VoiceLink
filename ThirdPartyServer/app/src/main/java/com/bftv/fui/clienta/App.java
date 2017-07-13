@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.ApplicationErrorReport;
 import android.content.Context;
 
+import com.bftv.fui.cp.CommentsDataSource;
 import com.bftv.fui.thirdparty.BindAidlManager;
 
 /**
@@ -24,5 +25,7 @@ public class App extends Application{
         super.onCreate();
         sContext = this;
         BindAidlManager.getInstance().init(this,null,true);
+
+        CommentsDataSource.insertPck(this,"xxx");
     }
 }
