@@ -29,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         try{
             VoiceAccessibility.enable(this);
+            VoiceAccessibility.openSystemSetting(this);
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        VoiceAccessibility.openSystemSetting(this);
+
 
         findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
             @Override
