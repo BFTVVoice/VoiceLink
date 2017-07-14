@@ -1,3 +1,6 @@
+下载aar<br>
+https://github.com/RiverrunNetwork/voicelink/blob/master/ThirdPartyServer/app/libs/appintent-release.aar<br>
+
 目前大耳朵 只支持四种类型跳转 <br>
 第一种 显示启动  <br>
 ```java
@@ -25,15 +28,15 @@ flag 代表Intent需要添加的flag <br>
 
 参数类型对照表如下 <br>
 ```java
-B bundle.putBoolean(key, Boolean.parseBoolean(value)); <br>
-S bundle.putString(key, Uri.decode(value)); <br>
-b bundle.putByte(key, Byte.parseByte(value));<br>
-c bundle.putChar(key, Uri.decode(value).charAt(0)); <br>
-d bundle.putDouble(key, Double.parseDouble(value)); <br>
-f bundle.putFloat(key, Float.parseFloat(value)); <br>
-i bundle.putInt(key, Integer.parseInt(value));<br>
-l bundle.putLong(key, Long.parseLong(value));<br>
-s bundle.putShort(key, Short.parseShort(value));<br>
+B bundle.putBoolean(key, Boolean.parseBoolean(value)); 
+S bundle.putString(key, Uri.decode(value)); 
+b bundle.putByte(key, Byte.parseByte(value));
+c bundle.putChar(key, Uri.decode(value).charAt(0)); 
+d bundle.putDouble(key, Double.parseDouble(value)); 
+f bundle.putFloat(key, Float.parseFloat(value)); 
+i bundle.putInt(key, Integer.parseInt(value));
+l bundle.putLong(key, Long.parseLong(value));
+s bundle.putShort(key, Short.parseShort(value));
 
 ```
 第二种 隐示启动  <br>
