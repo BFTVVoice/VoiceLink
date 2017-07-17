@@ -1,5 +1,9 @@
-下载aar<br>
-https://github.com/RiverrunNetwork/voicelink/blob/master/ThirdPartyServer/app/libs/appintent-release.aar<br>
+# 全局跳转
+
+| 下载aar           | 
+| -------------- 
+| https://github.com/RiverrunNetwork/voicelink/blob/master/ThirdPartyServer/app/libs/appintent-release.aar<br> |
+
 
 目前大耳朵 只支持四种类型跳转 <br>
 第一种 显示启动  <br>
